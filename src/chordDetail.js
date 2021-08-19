@@ -14,17 +14,21 @@ class ChordDetail extends Component {
         message: '',
         error: false,
     };
-
+    
+    
+    
+    
     componentDidMount = async () => {
         const chordId = this.props.match.params.id
         const chordData = await getChords(chordId)
         const classData = await getClasses();
-        this.setState({ ...chordData, classData })
+        console.log(this.state);
+        this.setState({ ...chordData, classData });
     };
 
     getClassId = () => {
-        const classObj = this.state.networks.find(
-            (cl) => cl.class === this.state.classes
+        const classObj = this.state.classes.find(
+            (cl) => cl.class === this.state.class
         );
         return classObj.id
     };
@@ -41,7 +45,7 @@ class ChordDetail extends Component {
 
         const data = await putChord(chordData);
         if (data.error) {
-            this.setState({ message: data.error, error:true });
+            this.setState({ message: data.error, error: true });
         } else {
             this.setState({ message: 'Update Succeeded', error: false});
             setTimeout (() => {
@@ -53,43 +57,52 @@ class ChordDetail extends Component {
     render() {
         return (
             <>  
+                {this.state.message && (
+                    <div
+                        className={classNames({
+                            message: true,
+                            error: this.state.error,
+                            success: !this.state.error,
+                        })}>
+                            {this.state.message}
+                        </div>
+                )}
                 <h1>{this.state.chord}</h1>
-                {/* <img alt={this.state.chord} src={this.state.image_url} /> */}
                 <form id='update-chord'>
                     <div className='chord-card'>
                         <label>Chord:</label>
                         <input 
+                            onChange={(e) => this.setState({chord: e.target.value})}
                             type='text' 
-                            value={this.state.chord} 
-                            onChange={(e) => this.setState({chord: e.target.value})}>
+                            value={this.state.chord}>
                         </input>
                     </div>
                     <div className='chord-card'>
                         <label>Key:</label>
                         <input 
+                            onChange={(e) => this.setState({key: e.target.value})}
                             type='text' 
-                            value={this.state.key} 
-                            onChange={(e) => this.setState({chord: e.target.value})}>
+                            value={this.state.key}>
                         </input>
                     </div>
                     <div className='chord-card'>
-                        <label>major:</label>
+                        <label>Major:</label>
                         <input 
+                            onChange={(e) => this.setState({major: e.target.value})}
                             type='boolean' 
-                            value={this.state.major} 
-                            onChange={(e) => this.setState({chord: e.target.value})}>
+                            value={this.state.major}>
                         </input>
                     </div>
                     <div className='chord-card'>
                         <select
-                            value={this.state.class}
                             onChange={(e) => {
                                 this.setState({ class: e.target.value });
                             }}
+                            value={this.state.class}
                             >
                             {this.state.classes.map ((cl) => {
                                 return (<option value={cl.class}>{cl.class}</option>
-                                )
+                                );
                             })}
                         </select>
                     </div>
@@ -101,4 +114,4 @@ class ChordDetail extends Component {
 }
 
 
-export default ChordDetail
+export default ChordDetail;
