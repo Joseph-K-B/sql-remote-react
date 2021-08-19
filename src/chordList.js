@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getChords } from './fetch-utils.js'
+import './chordList.css';
 
 
 class ChordList extends Component {

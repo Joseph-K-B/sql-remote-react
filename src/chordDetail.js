@@ -11,8 +11,8 @@ class ChordDetail extends Component {
         major: true,
         class:'',
         classes: [],
-        message: 'Update request approved',
-        error: false
+        // message: 'Update request approved',
+        // error: false
     };
 
     componentDidMount = async () => {
@@ -22,35 +22,35 @@ class ChordDetail extends Component {
         this.setState({ ...chordData, classData })
     };
 
-    getClassId = () => {
-       const chordObj = this.state.classes.find(
-           (cl) => cl.class === this.state.class);
-        return chordObj.id;
-    };
-    updateChord = async (e) => {
-        e.preventDefault();
-        const chordData = {
-            id: this.state.id,
-            key: this.state.key,
-            image_url: 'x' ,
-            major: this.state.major,
-            class_id: this.getClassId(),
-        };
-        const data = await putChord(chordData);
-        if (data.error) {
-            //display error message
-            this.setState({ message: data.error, error: true });
-        } else {
-            this.setState({ message: 'Update Succeeded', error: false });
-            setTimeout(() => {
-                this.setState({ message: '' });
-            }, 6000)
-        }
-    };
+    // getClassId = () => {
+    //    const chordObj = this.state.classes.find(
+    //        (cl) => cl.class === this.state.class);
+    //     return chordObj.id;
+    // };
+    // updateChord = async (e) => {
+    //     e.preventDefault();
+    //     const chordData = {
+    //         id: this.state.id,
+    //         key: this.state.key,
+    //         image_url: 'x' ,
+    //         major: this.state.major,
+    //         class_id: this.getClassId(),
+    //     };
+    //     const data = await putChord(chordData);
+    //     if (data.error) {
+    //         //display error message
+    //         this.setState({ message: data.error, error: true });
+    //     } else {
+    //         this.setState({ message: 'Update Succeeded', error: false });
+    //         setTimeout(() => {
+    //             this.setState({ message: '' });
+    //         }, 6000)
+    //     }
+    // };
     render() {
         return (
             <>  
-                {this.state.message && (
+                {/* {this.state.message && (
                 <div className={classNames({
                     message: true,
                     error: this.state.error,
@@ -59,11 +59,11 @@ class ChordDetail extends Component {
                 >
                     {this.state.message}
                 </div>
-                )}
+                )} */}
                 <h1>{this.state.chord}</h1>
-                <img alt={this.state.chord}></img>
+                <img alt={this.state.chord} src={this.state.image_url} />
                 <form id='update-chord'>
-                    <div>
+                    <div className='chord-card'>
                         <label>Chord:</label>
                         <input 
                             type='text' 
@@ -71,7 +71,7 @@ class ChordDetail extends Component {
                             onChange={(e) => this.setState({chord: e.target.value})}>
                         </input>
                     </div>
-                    <div>
+                    <div className='chord-card'>
                         <label>Key:</label>
                         <input 
                             type='text' 
@@ -79,7 +79,7 @@ class ChordDetail extends Component {
                             onChange={(e) => this.setState({chord: e.target.value})}>
                         </input>
                     </div>
-                    <div>
+                    <div className='chord-card'>
                         <label>major:</label>
                         <input 
                             type='boolean' 
@@ -87,7 +87,7 @@ class ChordDetail extends Component {
                             onChange={(e) => this.setState({chord: e.target.value})}>
                         </input>
                     </div>
-                    <div>
+                    <div className='chord-card'>
                         <select
                             value={this.state.class}
                             onChange={(e) => {
@@ -103,8 +103,9 @@ class ChordDetail extends Component {
                     <button onClick={this.updateChord}>Update Chord</button>
                 </form>
             </>
-        )}
+        );
     }
+}
 
 
 export default ChordDetail
