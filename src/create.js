@@ -69,7 +69,7 @@ class Create extends Component {
                             <input 
                                 type='text' 
                                 value={this.state.key} 
-                                onChange={(e) => this.setState({chord: e.target.value})}>
+                                onChange={(e) => this.setState({key: e.target.value})}>
                             </input>
                         </div>
                         <div>
@@ -77,7 +77,7 @@ class Create extends Component {
                             <input 
                                 type='boolean' 
                                 value={this.state.major} 
-                                onChange={(e) => this.setState({chord: e.target.value})}>
+                                onChange={(e) => this.setState({major: e.target.value})}>
                             </input>
                         </div>
                         <div>

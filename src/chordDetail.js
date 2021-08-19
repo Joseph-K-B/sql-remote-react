@@ -11,57 +11,50 @@ class ChordDetail extends Component {
         major: true,
         class:'',
         classes: [],
-        // message: 'Update request approved',
-        // error: false
+        message: '',
+        error: false,
     };
 
     componentDidMount = async () => {
         const chordId = this.props.match.params.id
         const chordData = await getChords(chordId)
-        const classData = await getClasses(chordId)
+        const classData = await getClasses();
         this.setState({ ...chordData, classData })
     };
 
-    // getClassId = () => {
-    //    const chordObj = this.state.classes.find(
-    //        (cl) => cl.class === this.state.class);
-    //     return chordObj.id;
-    // };
-    // updateChord = async (e) => {
-    //     e.preventDefault();
-    //     const chordData = {
-    //         id: this.state.id,
-    //         key: this.state.key,
-    //         image_url: 'x' ,
-    //         major: this.state.major,
-    //         class_id: this.getClassId(),
-    //     };
-    //     const data = await putChord(chordData);
-    //     if (data.error) {
-    //         //display error message
-    //         this.setState({ message: data.error, error: true });
-    //     } else {
-    //         this.setState({ message: 'Update Succeeded', error: false });
-    //         setTimeout(() => {
-    //             this.setState({ message: '' });
-    //         }, 6000)
-    //     }
-    // };
+    getClassId = () => {
+        const classObj = this.state.networks.find(
+            (cl) => cl.class === this.state.classes
+        );
+        return classObj.id
+    };
+
+    submitBtn = async (e) => {
+        e.preventDefault();
+        const chordData = {
+            id: this.state.id,
+            key: this.state.key,
+            chord: this.state.chord,
+            major: this.state.major,
+            class_id: this.getClassId(),
+        };
+
+        const data = await putChord(chordData);
+        if (data.error) {
+            this.setState({ message: data.error, error:true });
+        } else {
+            this.setState({ message: 'Update Succeeded', error: false});
+            setTimeout (() => {
+                this.setState({ message: '' });
+            }, 6000);
+        }
+    };
+    
     render() {
         return (
             <>  
-                {/* {this.state.message && (
-                <div className={classNames({
-                    message: true,
-                    error: this.state.error,
-                    success: !this.state.error,
-                })}
-                >
-                    {this.state.message}
-                </div>
-                )} */}
                 <h1>{this.state.chord}</h1>
-                <img alt={this.state.chord} src={this.state.image_url} />
+                {/* <img alt={this.state.chord} src={this.state.image_url} /> */}
                 <form id='update-chord'>
                     <div className='chord-card'>
                         <label>Chord:</label>
