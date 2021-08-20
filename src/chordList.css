@@ -3,3 +3,12 @@ div{
     flex-flow: column wrap;
     align-content: space-around;
 }
+section{
+    background-color: darkgray;
+}
+a{
+    color:rgb(136, 17, 41) ;
+}
+p{
+    font-size: 1.3rem;
+}

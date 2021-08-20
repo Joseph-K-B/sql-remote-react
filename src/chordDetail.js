@@ -72,7 +72,9 @@ class ChordDetail extends Component {
                     <div className='chord-card'>
                         <label>Chord:</label>
                         <input 
-                            onChange={(e) => this.setState({chord: e.target.value})}
+                            onChange={(e) => {
+                                this.setState({chord: e.target.value});
+                            }}
                             type='text' 
                             value={this.state.chord}>
                         </input>
@@ -80,7 +82,9 @@ class ChordDetail extends Component {
                     <div className='chord-card'>
                         <label>Key:</label>
                         <input 
-                            onChange={(e) => this.setState({key: e.target.value})}
+                            onChange={(e) => {
+                                this.setState({key: e.target.value});
+                            }}
                             type='text' 
                             value={this.state.key}>
                         </input>
@@ -88,25 +92,28 @@ class ChordDetail extends Component {
                     <div className='chord-card'>
                         <label>Major:</label>
                         <input 
-                            onChange={(e) => this.setState({major: e.target.value})}
+                            onChange={(e) => {
+                                this.setState({major: e.target.value});
+                            }}
                             type='boolean' 
                             value={this.state.major}>
                         </input>
                     </div>
                     <div className='chord-card'>
                         <select
+                            value={this.state.class}
                             onChange={(e) => {
                                 this.setState({ class: e.target.value });
                             }}
-                            value={this.state.class}
-                            >
+                        >
                             {this.state.classes.map ((cl) => {
-                                return (<option value={cl.class}>{cl.class}</option>
+                                return (
+                                    <option value={cl.class}>{cl.class}</option>
                                 );
                             })}
                         </select>
                     </div>
-                    <button onClick={this.updateChord}>Update Chord</button>
+                    <button onClick={this.putChord}>Update Chord</button>
                 </form>
             </>
         );

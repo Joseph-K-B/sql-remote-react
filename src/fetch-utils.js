@@ -1,5 +1,5 @@
 const URL = 'https://frozen-tor-10811.herokuapp.com';
-
+//GET
 export const getChords = async () => {
     const resp = await fetch(`${URL}/chords`);
     const data = await resp.json();
@@ -31,10 +31,10 @@ export const putChord = async (chordObj) => {
     return data;
     
 };
-
+//POST
 export const createChord = async (chordObj) => {
     const resp = await fetch(`${URL}/chords/`, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
