@@ -21,7 +21,7 @@ class ChordList extends Component {
                                 <h2>{c.chord}</h2>
                             </Link>
                         </h2>
-                        {/* <img src={c.image_url} alt={c.chord}/>  */}
+                        
                         <p>
                             Chord is {c.class} to the key of {c.key}
                         </p>

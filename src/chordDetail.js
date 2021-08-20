@@ -23,15 +23,21 @@ class ChordDetail extends Component {
         const chordData = await getChords(chordId)
         const classData = await getClasses();
         console.log(this.state);
-        this.setState({ ...chordData, classData });
+        this.setState({ 
+            id: chordData.id,
+            chord: chordData.key,
+            major: chordData.major,
+            class: classData.class_id 
+        });
+        
+        console.log('state', this.state);
     };
-
-    getClassId = () => {
-        const classObj = this.state.classes.find(
-            (cl) => cl.class === this.state.class
-        );
-        return classObj.id
-    };
+    // getClassId = () => {
+    //     const classObj = this.state.classes.find(
+    //         (cl) => cl.class === this.state.class
+    //     );
+    //     return classObj.id
+    // };
 
     submitBtn = async (e) => {
         e.preventDefault();
@@ -40,7 +46,7 @@ class ChordDetail extends Component {
             key: this.state.key,
             chord: this.state.chord,
             major: this.state.major,
-            class_id: this.getClassId(),
+            class_id: this.state.class,
         };
 
         const data = await putChord(chordData);
@@ -100,15 +106,16 @@ class ChordDetail extends Component {
                         </input>
                     </div>
                     <div className='chord-card'>
+                        <label>Class:</label>
                         <select
                             value={this.state.class}
-                            onChange={(e) => {
-                                this.setState({ class: e.target.value });
+                            onChange={ (e) => {
+                               this.setState({ class: e.target.value });
                             }}
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option value={cl.class}>{cl.class}</option>
+                                    <option value={cl.id}>{cl.class}</option>
                                 );
                             })}
                         </select>
