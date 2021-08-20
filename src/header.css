@@ -1,0 +1,27 @@
+.nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 1%;
+    background-color: rgb(107, 99, 99);
+    color: rgb(136, 17, 41);
+    border: black solid .25rem;
+    width: 6rem;
+    border-radius: 15%;
+    font-size: 1.3rem;
+
+}
+a.active{
+    text-decoration: none;
+    color:snow;
+}
+
+header{
+    height: 4.5em;
+    width: 100%;
+    background-color: rgb(32, 39, 39);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}

@@ -10,7 +10,7 @@ class App extends Component {
   state = {};
   render() {
     return (
-       <>Hello world
+       <>
          <BrowserRouter>
            <Header />
            <Switch>
