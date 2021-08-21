@@ -6,7 +6,7 @@ import classNames from 'classnames';
 class ChordDetail extends Component {
     state = {
         id: 0,
-        key:'',
+        musical_key:'',
         chord:'',
         major: true,
         class:'',
@@ -25,7 +25,8 @@ class ChordDetail extends Component {
         console.log(this.state);
         this.setState({ 
             id: chordData.id,
-            chord: chordData.key,
+            key: chordData.musical_key,
+            chord: chordData.chord,
             major: chordData.major,
             class: classData.class_id 
         });
@@ -43,7 +44,7 @@ class ChordDetail extends Component {
         e.preventDefault();
         const chordData = {
             id: this.state.id,
-            key: this.state.key,
+            key: this.state.musical_key,
             chord: this.state.chord,
             major: this.state.major,
             class_id: this.state.class,
@@ -92,7 +93,7 @@ class ChordDetail extends Component {
                                 this.setState({key: e.target.value});
                             }}
                             type='text' 
-                            value={this.state.key}>
+                            value={this.state.musical_key}>
                         </input>
                     </div>
                     <div className='chord-card'>
@@ -109,13 +110,13 @@ class ChordDetail extends Component {
                         <label>Class:</label>
                         <select
                             value={this.state.class}
-                            onChange={ (e) => {
+                            onChange={(e) => {
                                this.setState({ class: e.target.value });
                             }}
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option value={cl.id}>{cl.class}</option>
+                                    <option key={cl.class} value={cl.id}>{cl.class}</option>
                                 );
                             })}
                         </select>

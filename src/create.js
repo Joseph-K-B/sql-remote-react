@@ -4,7 +4,7 @@ import classNames from 'classnames';
 
 class Create extends Component {
     state = {
-        key:'',
+        musical_key:'',
         chord:'',
         major: true,
         class:'',
@@ -27,7 +27,7 @@ class Create extends Component {
      handleBtn = async (e) => {
          e.preventDefault();
          const chordData = {
-             key: this.state.key,
+             key: this.state.musical_key,
              chord: this.state.chord,
              major: this.state.major,
              class:this.state.class
@@ -68,7 +68,7 @@ class Create extends Component {
                             <label>Key:</label>
                             <input 
                                 type='text' 
-                                value={this.state.key} 
+                                value={this.state.musical_key} 
                                 onChange={(e) => this.setState({key: e.target.value})}>
                             </input>
                         </div>
@@ -89,7 +89,7 @@ class Create extends Component {
                                 }}
                                 >
                                 {this.state.classes.map ((cl) => {
-                                    return (<option value={cl.class}>{cl.class}</option>
+                                    return (<option value={cl.id}>{cl.class}</option>
                                     );
                                 })}
                             </select>

@@ -23,7 +23,7 @@ class ChordList extends Component {
                         </h2>
                         
                         <p>
-                            Chord is {c.class} to the key of {c.key}
+                            Chord is {c.class} to the key of {c.musical_key}
                         </p>
 
                     </div>
