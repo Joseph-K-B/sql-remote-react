@@ -28,7 +28,8 @@ class ChordDetail extends Component {
             key: chordData.musical_key,
             chord: chordData.chord,
             major: chordData.major,
-            class: classData.class_id 
+            class: classData.class_id, 
+             
         });
         
         console.log('state', this.state);
@@ -79,31 +80,31 @@ class ChordDetail extends Component {
                     <div className='chord-card'>
                         <label>Chord:</label>
                         <input 
+                            type='text' 
+                            value={this.state.chord}>
                             onChange={(e) => {
                                 this.setState({chord: e.target.value});
                             }}
-                            type='text' 
-                            value={this.state.chord}>
                         </input>
                     </div>
                     <div className='chord-card'>
                         <label>Key:</label>
                         <input 
+                            type='text' 
+                            value={this.state.musical_key}>
                             onChange={(e) => {
                                 this.setState({key: e.target.value});
                             }}
-                            type='text' 
-                            value={this.state.musical_key}>
                         </input>
                     </div>
                     <div className='chord-card'>
                         <label>Major:</label>
                         <input 
+                            type='boolean' 
+                            value={this.state.major}>
                             onChange={(e) => {
                                 this.setState({major: e.target.value});
                             }}
-                            type='boolean' 
-                            value={this.state.major}>
                         </input>
                     </div>
                     <div className='chord-card'>
