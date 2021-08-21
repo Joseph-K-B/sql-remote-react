@@ -4,11 +4,15 @@ div{
     align-content: space-around;
 }
 section{
-    background-color: darkgray;
+    background-color: #323031;
 }
 a{
     color:rgb(136, 17, 41) ;
 }
+/* a:hover {
+    border: 5rem solid rgb(136, 17, 41);
+} */
 p{
     font-size: 1.3rem;
+    color: #C1BDB3;
 }

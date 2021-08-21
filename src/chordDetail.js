@@ -22,13 +22,13 @@ class ChordDetail extends Component {
         const chordId = this.props.match.params.id
         const chordData = await getChords(chordId)
         const classData = await getClasses();
-        console.log(this.state);
-        this.setState({ 
-            id: chordData.id,
-            key: chordData.musical_key,
-            chord: chordData.chord,
-            major: chordData.major,
-            class: classData.class_id, 
+        // console.log(this.state);
+        this.setState({ ...chordData, classData
+            // id: chordData.id,
+            // key: chordData.musical_key,
+            // chord: chordData.chord,
+            // major: chordData.major,
+            // class: classData.class_id, 
              
         });
         
@@ -73,38 +73,41 @@ class ChordDetail extends Component {
                             success: !this.state.error,
                         })}>
                             {this.state.message}
-                        </div>
+                    </div>
                 )}
                 <h1>{this.state.chord}</h1>
                 <form id='update-chord'>
                     <div className='chord-card'>
                         <label>Chord:</label>
                         <input 
-                            type='text' 
-                            value={this.state.chord}>
                             onChange={(e) => {
                                 this.setState({chord: e.target.value});
                             }}
+                            type='text' 
+                            value={this.state.chord}
+                        >
                         </input>
                     </div>
                     <div className='chord-card'>
                         <label>Key:</label>
                         <input 
-                            type='text' 
-                            value={this.state.musical_key}>
                             onChange={(e) => {
                                 this.setState({key: e.target.value});
                             }}
+                            type='text' 
+                            value={this.state.musical_key}
+                        >
                         </input>
                     </div>
                     <div className='chord-card'>
                         <label>Major:</label>
                         <input 
-                            type='boolean' 
-                            value={this.state.major}>
                             onChange={(e) => {
                                 this.setState({major: e.target.value});
                             }}
+                            type='boolean' 
+                            value={this.state.major}
+                        >
                         </input>
                     </div>
                     <div className='chord-card'>
@@ -117,7 +120,7 @@ class ChordDetail extends Component {
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option key={cl.class} value={cl.id}>{cl.class}</option>
+                                    <option value={cl.class}>{cl.class}</option>
                                 );
                             })}
                         </select>

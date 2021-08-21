@@ -4,23 +4,27 @@
     justify-content: center;
     text-align: center;
     margin: 1%;
-    background-color: rgb(107, 99, 99);
-    color: rgb(136, 17, 41);
-    border: black solid .25rem;
+    background-color: #7F7979;
+    color: rgb#941C2F;
+    border: #323031 solid .25rem;
     width: 6rem;
     border-radius: 15%;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
 
 }
 a.active{
     text-decoration: none;
-    color:snow;
+    color: #323031;
+}
+
+a:hover{
+    opacity: 50%;
 }
 
 header{
-    height: 4.5em;
+    height: 4.75em;
     width: 100%;
-    background-color: rgb(32, 39, 39);
+    background-color: #5F5B6B;
     display: flex;
     flex-direction: row;
     justify-content: flex-end;

@@ -12,12 +12,12 @@ class App extends Component {
     return (
        <>
          <BrowserRouter>
-           <Header />
-           <Switch>
-            <Route exact path='/' component = {ChordList}></Route>
-             <Route path='/chords/:id' component = {ChordDetail}></Route>
-             <Route path='/create' component = {Create}></Route>
-           </Switch>
+            <Header />
+            <Switch>
+              <Route exact path='/' component = {ChordList}></Route>
+              <Route path='/chords/:id' component = {ChordDetail}></Route>
+              <Route path='/create' component = {Create}></Route>
+            </Switch>
          </BrowserRouter>
        </>
     );
