@@ -1,5 +1,5 @@
-// const URL = 'https://frozen-tor-10811.herokuapp.com/';
- const URL = 'http://localhost:3001/'
+const URL = 'https://frozen-tor-10811.herokuapp.com/';
+//  const URL = 'http://localhost:3001/'
 //GET
 export const getChords = async () => {
     const resp = await fetch(`${URL}chords`);
