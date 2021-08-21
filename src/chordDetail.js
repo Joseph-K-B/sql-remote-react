@@ -6,7 +6,7 @@ import classNames from 'classnames';
 class ChordDetail extends Component {
     state = {
         id: 0,
-        key:'',
+        musical_key:'',
         chord:'',
         major: true,
         class:'',
@@ -23,24 +23,31 @@ class ChordDetail extends Component {
         const chordData = await getChords(chordId)
         const classData = await getClasses();
         console.log(this.state);
-        this.setState({ ...chordData, classData });
+        this.setState({ 
+            id: chordData.id,
+            key: chordData.musical_key,
+            chord: chordData.chord,
+            major: chordData.major,
+            class: classData.class_id 
+        });
+        
+        console.log('state', this.state);
     };
-
-    getClassId = () => {
-        const classObj = this.state.classes.find(
-            (cl) => cl.class === this.state.class
-        );
-        return classObj.id
-    };
+    // getClassId = () => {
+    //     const classObj = this.state.classes.find(
+    //         (cl) => cl.class === this.state.class
+    //     );
+    //     return classObj.id
+    // };
 
     submitBtn = async (e) => {
         e.preventDefault();
         const chordData = {
             id: this.state.id,
-            key: this.state.key,
+            key: this.state.musical_key,
             chord: this.state.chord,
             major: this.state.major,
-            class_id: this.getClassId(),
+            class_id: this.state.class,
         };
 
         const data = await putChord(chordData);
@@ -86,7 +93,7 @@ class ChordDetail extends Component {
                                 this.setState({key: e.target.value});
                             }}
                             type='text' 
-                            value={this.state.key}>
+                            value={this.state.musical_key}>
                         </input>
                     </div>
                     <div className='chord-card'>
@@ -100,15 +107,16 @@ class ChordDetail extends Component {
                         </input>
                     </div>
                     <div className='chord-card'>
+                        <label>Class:</label>
                         <select
                             value={this.state.class}
                             onChange={(e) => {
-                                this.setState({ class: e.target.value });
+                               this.setState({ class: e.target.value });
                             }}
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option value={cl.class}>{cl.class}</option>
+                                    <option key={cl.class} value={cl.id}>{cl.class}</option>
                                 );
                             })}
                         </select>
