@@ -90,7 +90,7 @@ class ChordDetail extends Component {
                         >
                         </input>
                     </div>
-                    <div className='chord-card'>
+                    {/* <div className='chord-card'>
                         <label>Major:</label>
                         <input 
                             onChange={(e) => {
@@ -100,7 +100,7 @@ class ChordDetail extends Component {
                             value={this.state.major}
                         >
                         </input>
-                    </div>
+                    </div> */}
                     <div className='chord-card'>
                         <label>Class:</label>
                         <select
@@ -114,6 +114,19 @@ class ChordDetail extends Component {
                                     <option value={cl.class}>{cl.class}</option>
                                 );
                             })}
+                        </select>
+                    </div>
+                    <div className='chord-card'>
+                        <label>Class:</label>
+                        <select
+                            value={this.state.major}
+                            onChange={(e) => {
+                               this.setState({ major: e.target.value });
+                            }}
+                        >
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
+                                );
                         </select>
                     </div>
                     <button onClick={this.putChord}>Update Chord</button>
