@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { getChords, getClasses, putChord } from './fetch-utils.js';
+import { getChordId, getChords, getClasses, putChord } from './fetch-utils.js';
 import classNames from 'classnames';
+import './chordDetail.css';
 
 
 class ChordDetail extends Component {
@@ -20,10 +21,10 @@ class ChordDetail extends Component {
     
     componentDidMount = async () => {
         const chordId = this.props.match.params.id
-        const chordData = await getChords(chordId)
-        const classData = await getClasses();
-        // console.log(this.state);
-        this.setState({ ...chordData, classData
+        const chordData = await getChordId(chordId)
+        const classes = await getClasses();
+        // console.log(classData);
+        this.setState({ ...chordData, classes
             // id: chordData.id,
             // key: chordData.musical_key,
             // chord: chordData.chord,
