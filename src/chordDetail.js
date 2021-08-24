@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getChordId, getChords, getClasses, putChord } from './fetch-utils.js';
+import { getChordId, getClasses, putChord } from './fetch-utils.js';
 import classNames from 'classnames';
 import './chordDetail.css';
 
@@ -23,24 +23,14 @@ class ChordDetail extends Component {
         const chordId = this.props.match.params.id
         const chordData = await getChordId(chordId)
         const classes = await getClasses();
-        // console.log(classData);
         this.setState({ ...chordData, classes
-            // id: chordData.id,
-            // key: chordData.musical_key,
-            // chord: chordData.chord,
-            // major: chordData.major,
-            // class: classData.class_id, 
+            
              
         });
         
         console.log('state', this.state);
     };
-    // getClassId = () => {
-    //     const classObj = this.state.classes.find(
-    //         (cl) => cl.class === this.state.class
-    //     );
-    //     return classObj.id
-    // };
+    
 
     submitBtn = async (e) => {
         e.preventDefault();
