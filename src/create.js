@@ -72,14 +72,24 @@ class Create extends Component {
                                 onChange={(e) => this.setState({key: e.target.value})}>
                             </input>
                         </div>
-                        <div>
+                        {/* <div>
                             <label>Major:</label>
                             <input 
                                 type='boolean' 
                                 value={this.state.major} 
                                 onChange={(e) => this.setState({major: e.target.value})}>
                             </input>
-                        </div>
+                        </div> */}
+                        <select
+                            value={this.state.major}
+                            onChange={(e) => {
+                               this.setState({ major: e.target.value });
+                            }}
+                        >
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
+                                );
+                        </select>
                         <div>
                             <label>Class:</label>
                             <select
@@ -94,7 +104,7 @@ class Create extends Component {
                                 })}
                             </select>
                         </div>
-                        <button>Add Chord</button>
+                        <button onClick={this.handleBtn}>Add Chord</button>
                     </form>
             </>
         );

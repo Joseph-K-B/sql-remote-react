@@ -117,7 +117,7 @@ class ChordDetail extends Component {
                         </select>
                     </div>
                     <div className='chord-card'>
-                        <label>Class:</label>
+                        <label>Major:</label>
                         <select
                             value={this.state.major}
                             onChange={(e) => {
