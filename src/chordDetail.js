@@ -10,7 +10,7 @@ class ChordDetail extends Component {
         musical_key:'',
         chord:'',
         major: true,
-        class:'',
+        class_id: 1,
         classes: [],
         message: '',
         error: false,
@@ -36,10 +36,10 @@ class ChordDetail extends Component {
         e.preventDefault();
         const chordData = {
             id: this.state.id,
-            key: this.state.musical_key,
+            musical_key: this.state.musical_key,
             chord: this.state.chord,
             major: this.state.major,
-            class_id: this.state.class,
+            class_id: this.state.class_id,
         };
 
         const data = await putChord(chordData);
@@ -80,38 +80,27 @@ class ChordDetail extends Component {
                         </input>
                     </div>
                     <div className='chord-card'>
-                        <label>Key:</label>
+                        <label>Musical Key:</label>
                         <input 
                             onChange={(e) => {
-                                this.setState({key: e.target.value});
+                                this.setState({musical_key: e.target.value});
                             }}
                             type='text' 
                             value={this.state.musical_key}
                         >
                         </input>
                     </div>
-                    {/* <div className='chord-card'>
-                        <label>Major:</label>
-                        <input 
-                            onChange={(e) => {
-                                this.setState({major: e.target.value});
-                            }}
-                            type='boolean' 
-                            value={this.state.major}
-                        >
-                        </input>
-                    </div> */}
                     <div className='chord-card'>
                         <label>Class:</label>
                         <select
-                            value={this.state.class}
+                            value={this.state.class_id}
                             onChange={(e) => {
-                               this.setState({ class: e.target.value });
+                               this.setState({ class_id: e.target.value });
                             }}
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option value={cl.class}>{cl.class}</option>
+                                    <option value={cl.id}>{cl.class}</option>
                                 );
                             })}
                         </select>
@@ -129,7 +118,7 @@ class ChordDetail extends Component {
                                 );
                         </select>
                     </div>
-                    <button onClick={this.putChord}>Update Chord</button>
+                    <button onClick={this.submitBtn}>Update Chord</button>
                 </form>
             </>
         );
