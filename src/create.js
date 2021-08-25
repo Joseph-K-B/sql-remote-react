@@ -7,7 +7,7 @@ class Create extends Component {
         musical_key:'',
         chord:'',
         major: true,
-        class:'',
+        class_id: 1,
         classes: [],
         message: '',
         error: false
@@ -27,10 +27,10 @@ class Create extends Component {
      handleBtn = async (e) => {
          e.preventDefault();
          const chordData = {
-             key: this.state.musical_key,
+             musical_key: this.state.musical_key,
              chord: this.state.chord,
              major: this.state.major,
-             class:this.state.class
+             class_id:this.state.class_id
          };
          const data = await createChord (chordData);
          if (data.error) {
@@ -69,23 +69,25 @@ class Create extends Component {
                             <input 
                                 type='text' 
                                 value={this.state.musical_key} 
-                                onChange={(e) => this.setState({key: e.target.value})}>
+                                onChange={(e) => this.setState({musical_key: e.target.value})}>
                             </input>
                         </div>
-                        <div>
-                            <label>Major:</label>
-                            <input 
-                                type='boolean' 
-                                value={this.state.major} 
-                                onChange={(e) => this.setState({major: e.target.value})}>
-                            </input>
-                        </div>
+                        <select
+                            value={this.state.major}
+                            onChange={(e) => {
+                               this.setState({ major: e.target.value });
+                            }}
+                        >
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
+                                );
+                        </select>
                         <div>
                             <label>Class:</label>
                             <select
-                                value={this.state.class}
+                                value={this.state.class_id}
                                 onChange={(e) => {
-                                    this.setState({ class: e.target.value });
+                                    this.setState({ class_id: e.target.value });
                                 }}
                                 >
                                 {this.state.classes.map ((cl) => {
@@ -94,7 +96,7 @@ class Create extends Component {
                                 })}
                             </select>
                         </div>
-                        <button>Add Chord</button>
+                        <button onClick={this.handleBtn}>Add Chord</button>
                     </form>
             </>
         );

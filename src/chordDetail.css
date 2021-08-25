@@ -1,0 +1,9 @@
+form{
+    display: flex;
+    flex-direction: column-reverse;
+}
+/* select{
+    display: flex;
+    
+    width: 30%;
+} */

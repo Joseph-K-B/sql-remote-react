@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { getChords, getClasses, putChord } from './fetch-utils.js';
+import { getChordId, getClasses, putChord } from './fetch-utils.js';
 import classNames from 'classnames';
+import './chordDetail.css';
 
 
 class ChordDetail extends Component {
@@ -9,7 +10,7 @@ class ChordDetail extends Component {
         musical_key:'',
         chord:'',
         major: true,
-        class:'',
+        class_id: 1,
         classes: [],
         message: '',
         error: false,
@@ -20,35 +21,25 @@ class ChordDetail extends Component {
     
     componentDidMount = async () => {
         const chordId = this.props.match.params.id
-        const chordData = await getChords(chordId)
-        const classData = await getClasses();
-        // console.log(this.state);
-        this.setState({ ...chordData, classData
-            // id: chordData.id,
-            // key: chordData.musical_key,
-            // chord: chordData.chord,
-            // major: chordData.major,
-            // class: classData.class_id, 
+        const chordData = await getChordId(chordId)
+        const classes = await getClasses();
+        this.setState({ ...chordData, classes
+            
              
         });
         
         console.log('state', this.state);
     };
-    // getClassId = () => {
-    //     const classObj = this.state.classes.find(
-    //         (cl) => cl.class === this.state.class
-    //     );
-    //     return classObj.id
-    // };
+    
 
     submitBtn = async (e) => {
         e.preventDefault();
         const chordData = {
             id: this.state.id,
-            key: this.state.musical_key,
+            musical_key: this.state.musical_key,
             chord: this.state.chord,
             major: this.state.major,
-            class_id: this.state.class,
+            class_id: this.state.class_id,
         };
 
         const data = await putChord(chordData);
@@ -89,10 +80,10 @@ class ChordDetail extends Component {
                         </input>
                     </div>
                     <div className='chord-card'>
-                        <label>Key:</label>
+                        <label>Musical Key:</label>
                         <input 
                             onChange={(e) => {
-                                this.setState({key: e.target.value});
+                                this.setState({musical_key: e.target.value});
                             }}
                             type='text' 
                             value={this.state.musical_key}
@@ -100,32 +91,34 @@ class ChordDetail extends Component {
                         </input>
                     </div>
                     <div className='chord-card'>
-                        <label>Major:</label>
-                        <input 
-                            onChange={(e) => {
-                                this.setState({major: e.target.value});
-                            }}
-                            type='boolean' 
-                            value={this.state.major}
-                        >
-                        </input>
-                    </div>
-                    <div className='chord-card'>
                         <label>Class:</label>
                         <select
-                            value={this.state.class}
+                            value={this.state.class_id}
                             onChange={(e) => {
-                               this.setState({ class: e.target.value });
+                               this.setState({ class_id: e.target.value });
                             }}
                         >
                             {this.state.classes.map ((cl) => {
                                 return (
-                                    <option value={cl.class}>{cl.class}</option>
+                                    <option value={cl.id}>{cl.class}</option>
                                 );
                             })}
                         </select>
                     </div>
-                    <button onClick={this.putChord}>Update Chord</button>
+                    <div className='chord-card'>
+                        <label>Major:</label>
+                        <select
+                            value={this.state.major}
+                            onChange={(e) => {
+                               this.setState({ major: e.target.value });
+                            }}
+                        >
+                            <option value={true}>True</option>
+                            <option value={false}>False</option>
+                                );
+                        </select>
+                    </div>
+                    <button onClick={this.submitBtn}>Update Chord</button>
                 </form>
             </>
         );
